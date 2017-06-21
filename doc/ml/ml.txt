@@ -1,0 +1,47 @@
+c++ like structs and nondeterminisms
+
+Hello.
+
+I'm trying to parse c++ like structs but i wasn't not able to avoid nondeterminism warnings trying to implement c++ access specifiers.
+
+what i want to parse (for ex.) is something like this:
+
+interface if1
+{
+ private:
+ //definitions
+ public:
+ private:
+} ;
+
+I've got grammar like this
+
+<pre>
+aggregate_definition
+        :   KW_INTERFACE
+            IDENTIFIER 
+            LCURLY! (aggregate_definition_body_item)* RCURLY! SEMI!
+        ;
+        
+aggregate_definition_body_item
+        :   (access_specifier COLON)* (aggregate_definition_body_item_definition)*
+        ;
+        
+aggregate_definition_body_item_definition
+        :   IDENTIFIER SEMI! //real definitions will be here
+        ;        
+        
+        
+access_specifier
+        : KW_PRIVATE
+        | KW_PUBLIC
+        ;
+</pre>
+
+Thanks for any hints!
+
+
+
+Уточняю :)
+Есть С++ компилируемый в native и скриптовый C++-like языки. Хочу получить прозрачность вызова “сущностей” native<--> script через интерфейсы (MS COM-like). Для этого нужно генерить native<--> script прокси/стабы. Далее планируется, подменив транспорт, получить прозрачность (насколько это возможно) вызовов  “сущностей” через границы процесса/сети. Вот и понадобился мне midlc, но с возможностью использовать свои шаблоны для генерации кода по описанию интерфейсов. 
+Сейчас изучаю TAO.

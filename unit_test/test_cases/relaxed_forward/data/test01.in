@@ -1,0 +1,9 @@
+
+
+struct common {
+
+struct a : b {};
+
+struct b {};
+
+};

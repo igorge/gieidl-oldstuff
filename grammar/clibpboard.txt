@@ -1,0 +1,58 @@
+//================================================================================================================================================
+// expression
+//================================================================================================================================================
+
+//this is wrapper node
+//
+expression  
+        returns [ast_node node]
+        :   node = expr
+            {
+                node = factory_.create_unary_node__expression( node ); //wrap it up
+            }
+        ;
+
+expr    returns [ast_node node]    {ast_node r; char op;}
+        :   //mexpr ((PLUS^|MINUS^) mexpr)*
+            (
+                node=mexpr
+                (
+                    ((PLUS {op='+';}|MINUS {op='-';}) r=mexpr)
+                    {
+                        node = factory_.create_binary_node__op(node, r, op);
+                        GIE_LIB_ASSERTE( r.get()==NULL );
+                    }
+                )*
+            )
+        ;      
+mexpr   returns [ast_node node]    {ast_node r; char op;}
+        :   ( 
+                node=atom_neg_opt 
+                (
+                    (STAR {op='*';} | DIV {op='/';}) r=atom_neg_opt
+                    {
+                        node = factory_.create_binary_node__op(node, r, op);
+                        GIE_LIB_ASSERTE( r.get()==NULL );
+                    }   //end of match r pair
+                )* 
+            )
+        ;    
+
+atom_neg_opt    returns [ast_node node]
+        :   (minus:MINUS)? (node = atom)
+                {
+                    if( minus!=antlr::nullToken )
+                    {
+                        node = factory_.create_unary_node__neg( node );
+                    };
+                }
+        ;
+
+atom    returns [ast_node node]
+        : LPAREN! (node = expr) RPAREN!      
+        | id:IDENTIFIER                 { node = factory_.create_unary_node__identifier( id->getText() ); }
+        | n :NUMBER                     { node = factory_.create_c_number( n->getText() ); }
+        ;
+//================================================================================================================================================
+// end of expression
+//================================================================================================================================================

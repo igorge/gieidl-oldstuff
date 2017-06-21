@@ -1,0 +1,9 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+struct a
+: public undef_class_t /* !!! undefined symbol !!! */
+{
+
+};

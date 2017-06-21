@@ -1,0 +1,12 @@
+struct foo1_t
+{
+
+int f(q_t& param);
+int f(q_t& param);
+int f(q_t const** param);
+
+};
+
+struct q_t {};
+
+

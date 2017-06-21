@@ -1,0 +1,18 @@
+
+
+
+struct aaaa : q_ns::a, private  q_ns::q_q::a {};
+
+namespace q_ns 
+{
+
+    struct a {};
+    struct _a : a {};
+    
+    namespace q_q
+    {
+        struct a{};
+    }
+
+}
+

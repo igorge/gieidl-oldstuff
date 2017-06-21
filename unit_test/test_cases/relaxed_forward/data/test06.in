@@ -1,0 +1,16 @@
+
+struct cool_t {
+
+    struct inner_t
+    : private a_t
+    , public b_t
+    , protected c_t
+    , d_t
+    {};
+
+};
+
+struct a_t{};
+struct b_t{};
+struct c_t{};
+struct d_t{};

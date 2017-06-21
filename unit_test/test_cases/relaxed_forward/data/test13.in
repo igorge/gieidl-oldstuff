@@ -1,0 +1,5 @@
+struct foo_r
+{
+    const q_t a;
+};
+struct q_t {};

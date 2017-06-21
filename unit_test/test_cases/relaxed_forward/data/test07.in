@@ -1,0 +1,5 @@
+
+
+struct a
+: undef_class_t
+{};

@@ -1,0 +1,23 @@
+[HIG] named collection's insert method must have validator parameter
+[LOW] Fix typo in semantic.nodes.fucntion.interfaces.h.
+[LOW] Implemnet cv_qualifiers like function specifiers (as attributes).
+[LOW] Implement for pointer node: dependent symbols should be fine with forward only decl.
+[LOW] Implement node categories (to include node types) and  modify late_bound to accept category for accepted node for late resolution
+[HIG] Implement 'smart ' inteface golder => own if late_bound and own proxy ifobject in a tree
+[LOW] Deal with this: struct a{}; struct outer{ struct b:a{}; struct a{}; };
+[LOW] Seperate visitor_i from its default implementation.
+[MED] Store line information in attribute repository.
+[LOW] Implement aggregate tag name to be dumped.
+[LOW] Deprecate list_i (and relatives) for good.
+
+DONE
+[MED] Implement symbol_lookup_i (and concept)
+[HIG] Implemnet dependable symbols (forwards) resolution.
+[WISH] Implement symbol binding as plugable subsystem (something like backends).
+[LOW] Implement visitor for tree nodes.
+[CRI] Implement required_symbols_i in order to implement (forwards) resolution.
+[CRI] Think of avoiding recursion (remeber somewhere nodes we are visiting now?)
+[LOW][DROPPED] replace plain tuple and differerenc search result_t with node_info_t type.
+[LOW] Dump access when inheritting.
+[HIG] Implement accees to be dumped for aggregate members.
+[LOW] Use plain std::list instead of list_i for fq_id.

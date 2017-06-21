@@ -1,0 +1,11 @@
+type_info nodes
+
+
+type_descriptor - wrapper node
+   pointer_to (mods: constant)
+   reference_to (constrains: parent=type_descriptor)
+   base_type (mods: const)
+
+ex:
+int const *  const => type_descriptor -> pointer_to(mods:const) -> base_type(mods:const) -> late_bound(symbol:"int")
+    

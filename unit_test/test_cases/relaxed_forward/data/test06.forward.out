@@ -1,0 +1,38 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+struct a_t
+{
+
+};
+
+struct b_t
+{
+
+};
+
+struct c_t
+{
+
+};
+
+struct d_t
+{
+
+};
+
+struct cool_t
+{
+
+    public:
+    struct inner_t
+    : private ::a_t
+    , public ::b_t
+    , protected ::c_t
+    , public ::d_t
+    {
+
+    };
+
+};

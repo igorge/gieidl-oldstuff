@@ -1,0 +1,13 @@
+struct foo1_t
+{
+    private: 
+    struct inn2{};
+    public:
+    struct inn1: inn2 {};
+
+};
+
+struct foo2_t
+: foo1_t::inn1
+, foo1_t::inn2
+{};

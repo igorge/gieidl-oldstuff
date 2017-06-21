@@ -1,0 +1,14 @@
+namespace a
+{
+
+	struct a_t{};
+}
+
+struct cool_t
+{
+
+    struct inner_t: a::a_t
+    {};
+
+
+};

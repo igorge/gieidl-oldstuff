@@ -1,0 +1,65 @@
+#line 1 "file name"
+
+namespace empty_same_test
+{
+    struct st1 {};
+}
+
+namespace empty_same_test
+{
+    struct st1 {}; 
+}
+
+namespace empty1
+{
+    namespace empty2
+    {
+        namespace empty_
+        {
+        }
+    }
+    namespace empty333
+    {
+    }
+}
+
+struct empty1   //shoudl fail, couse lable is taken by namespace def
+{
+};
+
+namespace vvv
+{
+
+[dispatch]
+interface IFoo1
+    : IFoo2
+    , public IFoo3
+    , private IFoo4
+    , protected VasyaImpl
+    , PetyaImpl
+{
+
+    void method1_default_access([in]const int const* const param, int const  param2);
+    void method2_default_access(IUnknown* unknown);
+    
+    private:
+        int priv_m1();
+        int priv_m2(int &var);
+       
+       
+    protected:
+        std::string prot_m1();
+        int pprot_m2([help_str("test method"), in]int &var);
+   
+};
+
+
+namespace dummy
+{
+    namespace dummy
+    {
+    }
+}
+
+}
+

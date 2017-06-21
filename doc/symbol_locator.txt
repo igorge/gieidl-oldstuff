@@ -1,0 +1,10 @@
+symbol_resolution_i
+	(node_i_ptr_t, modified_access) resolve(symbol);
+
+
+symbol_locator;
+
+ (node_i_ptr) locate( access_scope /referrers parent/, id );
+
+
+

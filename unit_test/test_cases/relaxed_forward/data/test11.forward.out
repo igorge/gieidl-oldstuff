@@ -1,0 +1,27 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+struct bar_2
+{
+
+    private:
+    struct foo1_t
+    {
+
+        private:
+        struct foo2_t
+        {
+
+        };
+
+        private:
+        struct foo3_t
+        : public ::bar_2::foo1_t::foo2_t
+        {
+
+        };
+
+    };
+
+};

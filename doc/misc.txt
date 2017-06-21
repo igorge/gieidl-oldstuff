@@ -1,0 +1,5 @@
+limited-expression 
+Specifies a C-language expression. The MIDL compiler supports conditional expressions, logical expressions, relational expressions, and arithmetic expressions. MIDL does not allow function invocations in expressions and does not allow increment and decrement operators. 
+
+ лючевые слова Ч lvalue и rvalue. –езультат функции, возвращающей не ссылку, €вл€етс€ rvalue.
+

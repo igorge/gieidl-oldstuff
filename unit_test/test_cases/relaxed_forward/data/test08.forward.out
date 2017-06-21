@@ -1,0 +1,28 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+struct foo1_t
+{
+
+    private:
+    struct inn2
+    {
+
+    };
+
+    public:
+    struct inn1
+    : public ::foo1_t::inn2
+    {
+
+    };
+
+};
+
+struct foo2_t
+: public ::foo1_t::inn1
+, public foo1_t::inn2 /* !!! undefined symbol !!! */
+{
+
+};

@@ -1,0 +1,28 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+namespace q { //traverse
+
+    struct a_t
+    {
+
+    };
+
+}
+
+struct cool_t
+{
+
+    public:
+    struct inner_t
+    : public ::q::a_t
+    {
+
+    };
+
+};
+
+namespace q {
+
+}

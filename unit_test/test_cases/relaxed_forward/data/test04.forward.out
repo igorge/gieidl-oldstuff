@@ -1,0 +1,24 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+namespace a {
+
+    struct a_t
+    {
+
+    };
+
+}
+
+struct cool_t
+{
+
+    public:
+    struct inner_t
+    : public ::a::a_t
+    {
+
+    };
+
+};

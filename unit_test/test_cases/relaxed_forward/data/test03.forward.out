@@ -1,0 +1,46 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+namespace q_ns { //traverse
+
+    struct a
+    {
+
+    };
+
+}
+
+namespace q_ns { //traverse
+
+    namespace q_q { //traverse
+
+        struct a
+        {
+
+        };
+
+    }
+
+}
+
+struct aaaa
+: public ::q_ns::a
+, private ::q_ns::q_q::a
+{
+
+};
+
+namespace q_ns {
+
+    struct _a
+    : public ::q_ns::a
+    {
+
+    };
+
+    namespace q_q {
+
+    }
+
+}

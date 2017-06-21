@@ -1,0 +1,21 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+struct common
+{
+
+    public:
+    struct b
+    {
+
+    };
+
+    public:
+    struct a
+    : public ::common::b
+    {
+
+    };
+
+};

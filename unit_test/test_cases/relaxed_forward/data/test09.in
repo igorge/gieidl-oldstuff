@@ -1,0 +1,18 @@
+
+struct bar_2
+{ 
+
+private:
+
+struct foo1_t
+{
+private:
+    
+    struct foo2_t
+    {};
+    
+    struct foo3_t : ::bar_2::foo1_t::foo2_t
+    {};
+};
+
+};

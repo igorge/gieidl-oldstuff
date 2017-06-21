@@ -1,0 +1,31 @@
+// Machine generated, do not edit.
+// This is a dump of an INTERAL tree.
+
+
+struct q_t
+{
+
+};
+
+struct foo_r
+{
+
+    ::q_t const * a;
+
+    ::q_t const * b;
+
+    ::q_t const * c;
+
+    ::q_t * * d1;
+
+    ::q_t * * const d2;
+
+    ::q_t * const * d3;
+
+    ::q_t const * * d4;
+
+    ::q_t const * const * const d5;
+
+    int * var;
+
+};

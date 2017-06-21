@@ -1,0 +1,346 @@
+//================================================================================================================================================
+//import "oaidl.idl";
+//import "ocidl.idl";  
+//================================================================================================================================================
+//[
+//    uuid(F406A81C-B145-44c1-8C1A-1D181389C633),
+//	version(1.0)
+//]
+//library abc_codec
+namespace abc_codec
+{
+    //importlib("stdole2.tlb");
+    //importlib("stdole32.tlb");
+
+
+    [
+        object,
+        uuid(C2A90BF0-9F5E-4e36-9EA7-1DD5EEAF3571),
+        oleautomation
+    ]
+    interface IAbcEnumerator : IUnknown
+    {
+        HRESULT MoveNext([out, retval] BOOL * status);
+        HRESULT Current([out, retval] IUnknown ** item);
+        HRESULT Reset();
+    };
+
+    //
+    //CoAbcPropertyMetaInfo
+    //
+
+    [
+        object,
+        uuid(319F139B-D072-499e-AB64-0751349DD7B1),
+        oleautomation
+    ]
+    interface IAbcPropertyMetaInfo : IUnknown
+    {
+        HRESULT GetName([out, retval] BSTR* name);
+        //HRESULT GetCharset([out, retval] enum AbcCharSet * charset);
+        HRESULT GetCharset([out, retval] AbcCharSet * charset);
+        HRESULT GetMinMaxLength([out] ULONG * minLength, [out] ULONG * maxLength);
+    };
+
+    //enum AbcCharSet { charSetNone = 0, charSetNull, charSetNumberic, charSetAlphanumeric};
+
+    [
+        object,
+        uuid(EB1A5508-F7BC-4aac-A5B8-3E5BC8F2E5C2),
+        oleautomation
+    ]
+    interface IAbcPropertyMetaInfoBuilder : IAbcPropertyMetaInfo
+    {
+        HRESULT SetName([in] const BSTR name);
+        HRESULT SetStartTag([in] const BSTR startTag);
+        HRESULT SetRequired([in] const BOOL isRequired);
+        HRESULT SetMaxPerNode([in] const ULONG maxPerNode);
+        HRESULT SetMinPerNode([in] const ULONG minPerNode);
+        //HRESULT SetCharset([in] const enum AbcCharSet charset);
+        HRESULT SetCharset([in] const AbcCharSet charset);
+        HRESULT SetMinMaxLength([in] const ULONG minLength, [in] const ULONG maxLength);
+        HRESULT SetMinMaxPerLine([in] const ULONG minPerLine, [in] const ULONG maxPerLine);
+        HRESULT SetTerminationChar([in] const char terminationChar);
+    };
+
+    //[
+    //    uuid(EFB20DAE-DAFD-4777-BDA1-5C60930EDFEF)
+    // ]
+    //coclass CoAbcPropertyMetaInfo
+    //{
+    //    [default] interface IAbcPropertyMetaInfo;
+    //};
+
+
+    //
+    //CoNodeMetaInfo
+    //
+
+    [
+        object,
+        uuid(12141363-8C01-4710-A95F-C3802664C0C4),
+        oleautomation
+    ]
+    interface IAbcNodeMetaInfo : IUnknown
+    {
+        HRESULT GetNodeStartTag([out] BSTR * startTag );
+        HRESULT GetNodeName([out] BSTR * name );
+
+        HRESULT GetPropertyMetaInfo([in] const BSTR name, [out, retval] IAbcPropertyMetaInfo ** propertyMetaInfo);
+    };
+
+    [
+        object,
+        uuid(DF5872EA-BDDD-4e3f-B802-3237A3ED13AF),
+        oleautomation
+    ]
+    interface IAbcNodeMetaInfoBuilder : IAbcNodeMetaInfo
+    {
+        HRESULT SetNodeName([in] const BSTR name);
+        HRESULT SetContinuationTag([in] const BSTR name);
+
+        HRESULT AddProperty([in] IAbcPropertyMetaInfoBuilder* const prop);
+    };
+
+    //[
+    //    uuid(478CCA15-966D-40b8-ACDB-407C806B8429)
+    //]
+    //coclass CoAbcNodeMetaInfo
+    //{
+    //    [default] interface IAbcNodeMetaInfo;
+    //};
+
+    //
+    //CoLevelMetaInfo
+    //
+
+    [
+        object,
+        uuid(8B2FA531-98D2-44a8-A409-87B7B450A730),
+        oleautomation
+    ]
+    interface IAbcLevelMetaInfo : IUnknown
+    {
+        HRESULT GetLevelNumber([out, retval] ULONG * level);
+        HRESULT GetNodeMetaInfo([in] const BSTR name, [out, retval] IAbcNodeMetaInfo ** nodeMetaInfo);
+        HRESULT GetLinkProperty([out, retval] IAbcPropertyMetaInfo ** propMetaInfo);
+    };
+
+    [
+        object,
+        uuid(04F48CB0-1CE0-4dd8-B206-1CA649733EF3),
+        oleautomation
+    ]
+    interface IAbcLevelMetaInfoBuilder : IAbcLevelMetaInfo
+    {
+        HRESULT SetLevelNumber([in] const ULONG level);
+        HRESULT AddNode( [in] IAbcNodeMetaInfoBuilder* const node);
+        HRESULT SetLinkProperty([in] IAbcPropertyMetaInfoBuilder* const prop);
+
+    };
+
+    //[
+    //    uuid(81273C60-6FBD-4b71-BC41-AE87256189D1)
+    //]
+    //coclass CoAbcLevelMetaInfo
+    //{
+    //    [default] interface IAbcLevelMetaInfo;
+    //};
+
+    //
+    // CoMetaInfo
+    //
+    [
+        object,
+        uuid(57FAB041-F55B-4333-A3CE-FE01A69FA894),
+        oleautomation
+    ]
+    interface IAbcMetaInfo : IUnknown
+    {
+        HRESULT GetLevelInfo([in] const ULONG levelNumber, [out, retval] IAbcLevelMetaInfo ** levelInfo);
+    };
+
+    [
+        object,
+        uuid(4D46450E-0527-4601-9F22-0873C9C9717D),
+        oleautomation
+    ]
+    interface IAbcMetaInfoBuilder : IAbcMetaInfo
+    {
+        HRESULT SetNumOfLevels([in] const ULONG numOfLevels);
+        HRESULT SetMaxLineLength([in] const ULONG lineLength);
+        HRESULT SetContinuationChar([in] const char continuationChar);
+        HRESULT SetLevelInfo([in] IAbcLevelMetaInfoBuilder * const level );
+
+    };
+
+    //[
+    //    uuid(C63F8F9D-BED3-4320-A8AB-1898FCB47782)
+    // ]
+    //coclass CoAbcMetaInfo
+    //{
+    //    [default] interface IConfigLoader;
+    //};
+
+
+	//
+    //CoConfigLoader
+    //
+
+    [
+		object,
+        uuid(0CE24953-53F3-440a-B987-BFA4982AEA15),
+		oleautomation
+	]
+	interface IConfigLoader : IUnknown
+	{
+
+        HRESULT GetErrorLine([retval, out] INT* errorLine);
+        HRESULT Load([in] IStream * stream, [retval, out] IAbcMetaInfo** metaInfo );
+	};
+
+
+	//[
+    //    uuid(C7E86C5D-5E21-44ea-BAAD-4EC39CD3A789)
+//	]
+//	coclass CoConfigLoader
+//	{
+		//[default] interface IConfigLoader;
+	//};
+
+//================================================================================================================================================
+///    
+//================================================================================================================================================
+
+    //
+    // Abc Property
+    //
+    [
+        object,
+        uuid(FB8F1903-A288-45de-BB84-8F8D12293BFA),
+        oleautomation
+    ]
+    interface IAbcProperty : IUnknown
+    {
+        HRESULT GetName([out, retval] BSTR* name);
+        HRESULT GetValue([out, retval] BSTR* value);
+    };
+
+    [
+        object,
+        uuid(ED214988-FBD3-4345-9719-77EBB8590847),
+        oleautomation
+    ]
+    interface IAbcPropertyBuilder : IAbcProperty
+    {
+        HRESULT SetMetaInfo([in] IAbcPropertyMetaInfo * const propMetaInfo);
+        HRESULT SetValue([in] const BSTR value);
+    };
+
+
+//    [
+//        uuid(8C9D47CA-1BD4-4b79-BD6E-4C9751E24A3D)
+//    ]
+//    coclass CoAbcProperty
+//    {
+//        [default] interface IAbcNode;
+//    };
+
+
+    //
+    // Abc Node
+    //
+
+    [
+        object,
+        uuid(A65A998C-C591-4723-93DF-59712B29CCD7),
+        oleautomation
+    ]
+    interface IAbcNode : IUnknown
+    {
+        HRESULT GetNodeName([out, retval] BSTR* nodeName);
+        HRESULT GetChildsEnumerator([out, retval] IAbcEnumerator ** enumerator);
+        HRESULT GetPropertiesEnumerator([out, retval] IAbcEnumerator ** enumerator);
+
+        HRESULT GetLinkPropertyMetaInfo([out, retval] IAbcPropertyMetaInfo ** propertyMetaInfo);
+        HRESULT GetNodeMetaInfo([out, retval] IAbcNodeMetaInfo ** const nodeMetaInfo);
+
+        HRESULT GetPropertyValue([in] const BSTR name, [out, retval] BSTR* value);
+        HRESULT GetProperty([in] const BSTR name, [out, retval] IAbcProperty** value);
+    };
+
+    [
+        object,
+        uuid(36197614-FAC2-4fa5-8D03-FCBBA5BCCE76),
+        oleautomation
+    ]
+    interface IAbcNodeBuilder : IAbcNode
+    {
+        HRESULT SetMetaInfo([in] IAbcMetaInfo * const metaInfo, [in] IAbcNodeMetaInfo * const nodeMetaInfo, [in] const ULONG LevelNumber);
+        //HRESULT CreateNode([in] const BSTR startTag, [out, retval] IAbcNodeBuilder** newNode);
+        HRESULT AddNode([in] IAbcNodeBuilder* const newNode);
+        HRESULT CreateProperty([in] const BSTR propertyName, [in] const BSTR propertyValue, [out, retval] IAbcPropertyBuilder** newProperty);
+    };
+
+    [
+        object,
+        uuid(07F8EFA0-5ABC-4191-8C19-7C6C50A5D4DF),
+        oleautomation
+    ]
+    interface IAbcLinkedNodeBuilder : IAbcNodeBuilder
+    {
+        HRESULT LinkNode([in] IAbcNodeBuilder* const newNode);
+    };
+
+    //[
+    //    uuid(C977979F-C282-4c9b-8CE4-B5064DBE8F38)
+   // ]
+    //coclass CoAbcNode
+    //{
+     //   [default] interface IAbcNode;
+    //};
+
+    //[
+    //    uuid(8C8A796A-9A4C-42c0-9524-FE6B4B6AE43B)
+    //]
+    //coclass CoAbcLinkedNode
+    //{
+    //    [default] interface IAbcNode;
+    //};
+    //
+    // Abc Tree
+    //
+
+    [
+        object,
+        uuid(741FE002-47A9-4d25-BA46-5073F144E0EF),
+        oleautomation
+    ]
+    interface IAbcTree : IUnknown
+    {
+
+    };
+
+    [
+        object,
+        uuid(53A031E8-41FC-4378-920D-BB24E224C2D8),
+        oleautomation
+    ]
+    interface IAbcTreeBuilder : IAbcTree
+    {
+        HRESULT SetMetaInfo([in] IAbcMetaInfo * const metaInfo);
+        //HRESULT CreateNode([in] const BSTR nodeName);
+    };
+
+
+    //[
+    //    uuid(67EA3B12-F2CB-4df3-B6FC-3F08B18A6806)
+    //]
+    //coclass CoAbcTree
+    //{
+    //    [default] interface IAbcTree;
+    //};
+
+//================================================================================================================================================
+}//;
+//================================================================================================================================================

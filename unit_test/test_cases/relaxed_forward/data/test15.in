@@ -1,0 +1,13 @@
+struct foo_r
+{
+    q_t& a;
+    q_t const & b;
+    const q_t & b_;
+    q_t * & c;
+    q_t * const & c2;
+    q_t const * const & c3;
+    q_t const * & c4;
+    const  q_t * & c4_;
+   
+};
+struct q_t { int aaa; };

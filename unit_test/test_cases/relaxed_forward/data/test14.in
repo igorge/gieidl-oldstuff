@@ -1,0 +1,16 @@
+struct foo_r
+{
+    int * var;
+    
+    const q_t * a;
+    q_t const * b;
+    const q_t const * c;
+
+    q_t ** d1;
+    q_t ** const d2;
+    q_t * const * d3;
+    q_t const * * d4;
+    q_t const * const * const d5;
+    
+};
+struct q_t {};

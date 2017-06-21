@@ -1,0 +1,13 @@
+
+
+struct common {
+
+struct a : b::b {};
+
+struct b {
+
+struct b {};
+
+};
+
+};

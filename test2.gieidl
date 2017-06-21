@@ -1,0 +1,168 @@
+interface test_if 
+    : public if_parent1
+    ,  if_parent2
+    ,  private if_parent3
+    ,  protected if_parent4
+    ,  if_parent5
+{ 
+     int var2();
+    private:
+        ::std::aaa::string const * const * const  functuion1 (int const& p1, int* const p2);
+        int var();
+    protected:
+        int c;
+        int const* &d;
+        
+    private: //removal test
+};
+
+
+int const* d = 1;
+interface test_if2 
+    : public if_parent1
+    ,  if_parent2
+    ,  private if_parent3
+    ,  protected if_parent4
+    ,  if_parent5
+{ 
+     int var2();
+    private:
+        ::std::aaa::string const * const * const  functuion1 (int const& p1, int* const p2);
+        int var();
+    protected:
+        int c;
+        int const* &d;
+        
+    private: //removal test
+};
+
+int const* d = 1;
+int const* d = 1;
+
+
+
+
+
+
+
+
+
+namespace gie {
+
+    namespace debug {
+        struct parent_t
+        {
+        };
+        struct parent_abs_t
+        {
+        };
+    }
+    
+    struct parent_t
+    {
+        private:
+        struct parent_parent_t
+        {
+        };
+    };
+    
+    struct child_t
+        : parent_t::parent_parent_t
+        , parent_t
+        , debug::parent_t
+        , debug::non_existing_parent_t
+        , ::gie::debug::parent_abs_t
+    {
+    };
+
+    
+}
+
+namespace gie {
+    struct struct_1
+    {
+        struct inner_1
+        {
+            protected:
+            class inner_class_1
+            {
+            };
+        };
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+namespace ns1{
+    struct in_ns1_t
+    {
+    };   
+    
+    namespace ns2{
+    }
+}
+
+class  p
+{
+
+    struct default_access_struct_t{ struct struct_default_access_struct_t{}; };
+
+public:
+    struct inner_p
+    : undefined_in_struct_t
+    , private ::ns1::in_ns1_t
+    {
+    };
+private:
+    struct private_struct_t{};
+protected:
+   struct protected_struct_t{};        
+};
+
+struct child 
+:  p::inner_p
+,  undefined_t
+{
+};
+
+struct undefined_t //to test late bound
+{
+};
+
+
+
+
+

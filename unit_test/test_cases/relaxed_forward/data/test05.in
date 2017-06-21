@@ -1,0 +1,13 @@
+namespace q
+{
+    struct a_t{};
+}
+
+struct cool_t 
+{
+
+    struct inner_t: q::a_t
+    {};
+
+
+};
